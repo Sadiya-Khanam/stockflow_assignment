@@ -1,32 +1,41 @@
-## Problems in code:
+## Issue 1
 
-. It didn’t check if required fields like name,sku, etc are missing
+The code didn’t check if all important fields like name, sku, price, etc. are present in the request.
 
-. There was no check if SKU is already used (SKU should be unique)
+Impact: If any field is missing, it can break the app or give weird errors.
 
-. It saved the product first, then inventory — if inventory fails, product still gets saved
+Fix: I added a check to make sure all required fields are there. If not, it shows a proper error message.
 
-. No error handling — if database error happens, app might crash
+## Issue 2
 
-. Price was not handled using Decimal, which can cause rounding issues
+It didn’t check if the SKU is already used.
 
-## What I changed:
+Impact: SKU is supposed to be unique. If same SKU is used again, database will throw error or wrong data can go in.
 
-. Added a check for all required fields
+Fix: I added a check to see if the SKU already exists in the database. If it does, we return an error.
 
-. Checked if the SKU already exists in the database
+## Issue 3
 
-. Used Decimal() to safely store price values
+Product was getting saved first, and inventory was saved after that.
 
-. Added both product and inventory, then used one final commit()
+Impact: If inventory fails to save, product is already added. So incomplete data goes in the DB.
 
-. Wrapped DB operations in a try-except block to handle errors and do rollback() if needed
+Fix: I used flush() to get product ID but didn’t commit immediately. After adding both product and inventory, I did one commit().
 
-## Why I did these changes:
+## Issue 4
 
-. To avoid saving partial data in case of failure
+There was no error handling.
 
-. To make the API safe and handle wrong input better
+Impact: If something goes wrong (like database issue), app might crash and user won’t understand what happened.
 
-. So that user gets proper error messages instead of app crash
+Fix: I added a try-except block to catch errors. If anything fails, it rolls back the DB and shows an error message.
+
+## Issue 5
+
+Price was stored using float directly.
+
+Impact: Float can cause rounding mistakes with prices.
+
+Fix: I used Decimal() to store price safely without rounding errors.
+
 

@@ -1,20 +1,20 @@
 ##  Database Design Explanation
 
-. companies – to store company info
+. companies - to store company info
 
-. warehouses – each warehouse belongs to a company
+. warehouses - each warehouse belongs to a company
 
-. products – has details like name, SKU, price, and type (single/bundle)
+. products - has details like name, SKU, price, and type (single/bundle)
 
-. inventory – shows quantity of a product in a warehouse
+. inventory - shows quantity of a product in a warehouse
 
-. inventory_logs – tracks inventory changes with reason and date
+. inventory_logs - tracks inventory changes with reason and date
 
-. suppliers – stores supplier info like name and email
+. suppliers - stores supplier info like name and email
 
-. product_suppliers – links products and their suppliers (many-to-many)
+. product_suppliers - links products and their suppliers (many-to-many)
 
-. product_bundles – allows one product to be made of other products (for combos or kits)
+. product_bundles - allows one product to be made of other products (for combos or kits)
 
 ## Missing Questions 
 
