@@ -2,7 +2,7 @@
 
 This is a take-home assignment for a B2B SaaS inventory system called StockFlow.
 
-The project is split into 3 parts:
+The project is divided into 3 parts:
 
 ##  Part 1: Code Review & Debugging
 
